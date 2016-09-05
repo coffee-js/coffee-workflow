@@ -12,7 +12,7 @@ module.exports = (info) ->
         'webpack-dev-server/client?' + config.host + ':' + config.port
         'webpack/hot/dev-server'
       ]
-      main: [ './src/main' ]
+      main: [ 'webpack-hud', './src/main' ]
     output:
       path: path.join(info.__dirname, 'build/')
       filename: '[name].js'
@@ -25,7 +25,7 @@ module.exports = (info) ->
     module: loaders: [
       {
         test: /\.coffee$/
-        loader: 'coffee'
+        loader: 'coffee!coffeelint'
         ignore: /node_modules/
       }
       {
@@ -46,4 +46,6 @@ module.exports = (info) ->
       new (webpack.optimize.CommonsChunkPlugin)('vendor', 'vendor.js')
       new (webpack.HotModuleReplacementPlugin)
     ]
+    coffeelint:
+      emitErrors: true
   }
