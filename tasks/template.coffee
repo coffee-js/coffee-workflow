@@ -3,9 +3,10 @@
 stir = require('stir-template')
 settings = require('./settings')
 resource = require('./resource')
-logoUrl = 'http://logo.cirru.org/cirru-32x32.png'
 
 {html, head, title, meta, link, script, body, div, style} = stir
+
+logoUrl = 'http://logo.cirru.org/cirru-32x32.png'
 
 module.exports = (env) ->
   config = settings.get(env)

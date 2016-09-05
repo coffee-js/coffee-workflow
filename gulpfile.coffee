@@ -10,14 +10,14 @@ env = 'dev'
 
 gulp.task 'rsync', (cb) ->
   wrapper = require('rsyncwrapper')
-  wrapper.rsync {
+  wrapper.rsync
     ssh: true
     src: [ 'build/*' ]
     recursive: true
     args: [ '--verbose' ]
     dest: 'tiye:~/repo/workflow/'
     deleteAll: true
-  }, (error, stdout, stderr, cmd) ->
+  , (error, stdout, stderr, cmd) ->
     if error != null
       throw error
     console.error stderr
@@ -29,7 +29,6 @@ gulp.task 'script', ->
   gulp.src('src/*.cirru').pipe(script()).pipe gulp.dest('lib/')
 
 gulp.task 'html', (cb) ->
-  `var fs`
   html = require('./tasks/template')
   fs = require('fs')
   fs.writeFile 'build/index.html', html(env), cb
@@ -75,7 +74,7 @@ gulp.task 'webpack-build', (cb) ->
     gutil.log '[webpack]', stats.toString()
     jsonData = stats.toJson()
     fileContent = JSON.stringify(jsonData.assetsByChunkName)
-    fs.writeFileSync 'tasks/assets.json', fileContent
+    fs.writeFileSync 'build/assets.json', fileContent
     cb()
 
 gulp.task 'dev', (cb) ->
