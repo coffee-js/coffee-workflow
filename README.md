@@ -1,24 +1,14 @@
 
-Workflow based on Webpack & CirruScript
+Workflow based on Webpack & CoffeeScript
 ----
 
-Scaffold for personal projects.
+Scaffold for small projects.
 
 ### Bash Alias
 
 ```bash
-# webpack-workflow
-export wf=/Users/chen/repo/mvc-works/webpack-workflow/
-alias workflow="
-cp $wf/gulpfile.* .;
-cp $wf/package.json .;
-cp $wf/README.md .;
-cp $wf/.gitignore .;
-cp $wf/.npmignore .;
-cp -r $wf/src .;
-cp -r $wf/tasks .;
-git init;
-"
+git clone git@github.com:react-china/coffee-workflow.git project
+cd project/
 ```
 
 ### Usage
@@ -30,15 +20,6 @@ npm i
 gulp dev
 ```
 
-For a server, also [try this][server]:
-
-[server]: https://github.com/jlongster/backend-with-webpack/blob/master/gulpfile.js
-
-```bash
-gulp webpack-server
-node build/bundle.js
-```
-
 * Production
 
 ```bash
@@ -48,7 +29,7 @@ gulp rsync
 
 ### Project Template
 
-https://github.com/mvc-works/webpack-workflow
+https://github.com/react-china/coffee-workflow
 
 ### License
 
