@@ -22,6 +22,7 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
     "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.2",
     "gulp-util": "^3.0.7",
     "hsl": "^0.1.1",
     "json-loader": "^0.5.3",

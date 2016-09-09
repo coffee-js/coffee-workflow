@@ -25,8 +25,11 @@ gulp.task 'rsync', (cb) ->
     cb()
 
 gulp.task 'script', ->
-  script = require('gulp-cirru-script')
-  gulp.src('src/*.cirru').pipe(script()).pipe gulp.dest('lib/')
+  coffee = require('gulp-coffee')
+  gulp
+  .src 'src/*.coffee'
+  .pipe coffee bare: yes
+  .pipe gulp.dest('lib/')
 
 gulp.task 'html', (cb) ->
   html = require('./tasks/template')
