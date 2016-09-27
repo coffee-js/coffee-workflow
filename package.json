@@ -35,7 +35,13 @@
     "webpack-dev-server": "^1.15.1",
     "webpack-hud": "0.0.9"
   },
-  "dependencies": {},
+  "dependencies": {
+    "actions-in-recorder": "^1.7.1",
+    "immutable": "^3.8.1",
+    "immutable-devtools": "0.0.7",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/react-china/coffee-workflow.git"
