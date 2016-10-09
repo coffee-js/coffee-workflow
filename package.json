@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "actions-in-recorder": "^1.7.1",
+    "hsl": "^0.1.1",
     "immutable": "^3.8.1",
     "immutable-devtools": "0.0.7",
     "react": "^15.3.2",

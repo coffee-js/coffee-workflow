@@ -1,8 +1,12 @@
 
-
 stir = require('stir-template')
+React = require 'react'
+ReactDOM = require 'react-dom/server'
+
+schema = require '../src/schema'
 settings = require('./settings')
 resource = require('./resource')
+Container = React.createFactory require('../src/app/container')
 
 {html, head, title, meta, link, script, body, div, style} = stir
 
@@ -11,6 +15,8 @@ logoUrl = 'http://logo.cirru.org/cirru-32x32.png'
 module.exports = (env) ->
   config = settings.get(env)
   assets = resource.get(config)
+  store = schema.store
+
   stir.render stir.doctype(),
     html {},
       head {},
@@ -23,4 +29,5 @@ module.exports = (env) ->
         script src: assets.main, defer: true
         style {}, 'body * {box-sizing: border-box;}'
     body style: 'margin: 0;',
-      div id: 'app'
+      div id: 'app',
+        ReactDOM.renderToString Container(store: store)

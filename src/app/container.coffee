@@ -13,4 +13,3 @@ module.exports = React.createClass
   render: ->
     div className: 'app-container', onClick: @onClick,
       @props.store
-
