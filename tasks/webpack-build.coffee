@@ -9,19 +9,26 @@ module.exports = (info) ->
   # returns
   entry:
     main: [ './src/main' ]
-    vendor: []
+    vendor: ['react']
   output:
     path: path.join(info.__dirname, 'build/')
     filename: '[name].[chunkhash:8].js'
+  performance:
+    hints: 'warning'
   resolve: webpackConfig.resolve
   module:
-    loaders: [
-      {test: /\.coffee$/, loader: 'coffee', ignore: /node_modules/}
+    rules: [
+      {test: /\.coffee$/, loader: 'coffee-loader', exclude: /node_modules/}
       {test: /.(png|jpg)$/, loader: 'url-loader', query: limit: 100}
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')}
+      {test: /\.css$/, loader: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader'
+      })}
     ]
   plugins: [
-    new (webpack.optimize.CommonsChunkPlugin)('vendor', 'vendor.[chunkhash:8].js')
+    new webpack.DefinePlugin
+      'process.env':
+        NODE_ENV: JSON.stringify('production')
+    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.[chunkhash:8].js'})
     new ExtractTextPlugin('style.[chunkhash:8].css')
-    new (webpack.optimize.UglifyJsPlugin)(sourceMap: false)
+    new webpack.optimize.UglifyJsPlugin(sourceMap: false)
   ]

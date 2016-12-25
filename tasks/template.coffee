@@ -8,7 +8,9 @@ settings = require('./settings')
 resource = require('./resource')
 Container = React.createFactory require('../src/app/container')
 
-{html, head, title, meta, link, script, body, div, style} = stir
+{html, head, title, meta, link, script, body, div} = stir
+
+style = stir.createFactory 'style'
 
 logoUrl = 'http://logo.cirru.org/cirru-32x32.png'
 
@@ -17,7 +19,7 @@ module.exports = (env) ->
   assets = resource.get(config)
   store = schema.store
 
-  stir.render stir.doctype(),
+  stir.render stir.doctype,
     html {},
       head {},
         title {}, 'Workflow'
