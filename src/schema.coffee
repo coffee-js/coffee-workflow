@@ -1,2 +1,5 @@
 
-exports.store = 0
+Immutable = require 'immutable'
+
+exports.store = Immutable.fromJS
+  router: null

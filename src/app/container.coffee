@@ -2,14 +2,25 @@
 React = require 'react'
 recorder = require 'actions-in-recorder'
 
+Addressbar = React.createFactory require 'router-as-view'
+Sidebar = React.createFactory require './sidebar'
+Doc = React.createFactory require './doc'
+
+routes = require '../routes'
+
 {div} = React.DOM
 
 module.exports = React.createClass
   displayName: 'app-container'
 
-  onClick: ->
-    recorder.dispatch 'inc', null
-
   render: ->
-    div className: 'app-container', onClick: @onClick,
-      @props.store
+    div className: 'app-container',
+      Sidebar()
+      Doc()
+      Addressbar
+        router: @props.store.get('router')
+        routes: routes
+        onPopstate: (info, event) ->
+          recorder.dispatch 'router/go', info
+        inHash: true
+        skipRendering: false

@@ -4,13 +4,14 @@ recorder = require 'actions-in-recorder'
 ReactDOM = require 'react-dom'
 Immutable = require 'immutable'
 installDevtools = require 'immutable-devtools'
+pathUtil = require 'router-as-view/lib/path'
 
+schema = require './schema'
+routes = require './routes'
+updater = require './updater/index'
 Container = React.createFactory require('./app/container')
 
 require './main.css'
-
-updater = (store, op, opData) ->
-  store + 1
 
 render = (core) ->
   mountPoint = document.querySelector('#app')
@@ -18,9 +19,10 @@ render = (core) ->
 
 main = ->
   installDevtools Immutable
+  router = pathUtil.parseAddress location.hash.replace(/#/, ''), routes
 
   recorder.setup
-    initial: 0
+    initial: schema.store.set 'router', router
     updater: updater
 
   recorder.request render

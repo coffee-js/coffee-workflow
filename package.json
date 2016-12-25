@@ -41,7 +41,8 @@
     "immutable": "^3.8.1",
     "immutable-devtools": "0.0.7",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "router-as-view": "^2.1.2"
   },
   "repository": {
     "type": "git",
