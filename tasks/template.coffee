@@ -2,7 +2,9 @@
 stir = require('stir-template')
 React = require 'react'
 ReactDOM = require 'react-dom/server'
+pathUtil = require 'router-as-view/lib/path'
 
+routes = require '../src/routes'
 schema = require '../src/schema'
 settings = require('./settings')
 resource = require('./resource')
@@ -17,7 +19,8 @@ logoUrl = 'http://logo.cirru.org/cirru-32x32.png'
 module.exports = (env) ->
   config = settings.get(env)
   assets = resource.get(config)
-  store = schema.store
+  router = pathUtil.parseAddress '/', routes
+  store = schema.store.set 'router', router
 
   stir.render stir.doctype,
     html {},
