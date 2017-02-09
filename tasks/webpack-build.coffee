@@ -7,6 +7,7 @@ ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = (info) ->
   webpackConfig = webpackDev(info)
   # returns
+  stats: false
   entry:
     main: [ './src/main' ]
     vendor: ['react']
@@ -21,7 +22,7 @@ module.exports = (info) ->
       {test: /\.coffee$/, loader: 'coffee-loader', exclude: /node_modules/}
       {test: /.(png|jpg)$/, loader: 'url-loader', query: limit: 100}
       {test: /\.css$/, loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader'
+        fallback: 'style-loader', use: 'css-loader!postcss-loader'
       })}
     ]
   plugins: [

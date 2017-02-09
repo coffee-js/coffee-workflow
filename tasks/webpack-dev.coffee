@@ -7,6 +7,8 @@ settings = require('./settings')
 module.exports = (info) ->
   config = settings.get('dev')
   # returns
+  devServer:
+    stats: 'errors-only'
   entry:
     vendor: [
       "webpack-dev-server/client?#{config.host}:#{config.port}"
@@ -19,8 +21,6 @@ module.exports = (info) ->
     publicPath: "#{config.host}:#{config.port}/"
   resolve:
     extensions: ['.js', '.coffee']
-  performance:
-    hints: false
   module:
     rules: [
       {test: /\.coffee$/, loaders: ['coffee-loader', 'coffeelint-loader'], exclude: /node_modules/}

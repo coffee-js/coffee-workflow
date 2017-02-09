@@ -48,7 +48,7 @@ gulp.task 'webpack-dev', (cb) ->
   webpackServer =
     publicPath: '/'
     hot: true
-    stats: colors: true
+    stats: 'errors-only'
   info =
     __dirname: __dirname
     env: env
